@@ -17,7 +17,7 @@ if (ENV.startsWith('node')) {
   global.FSTYPE = 'LocalStorage'
 }
 
-async function getFS (pify=true) {
+async function getFS (promisify=true) {
   // check for cached global instance
   if (fs === undefined) {
     // attempt to get primary choice of either node fs or chrome storage
@@ -38,8 +38,8 @@ async function getFS (pify=true) {
     fs.cpr = pfs.cpr = extraFS.cpr
     fs.mvr = pfs.mvr = extraFS.mvr
   }
-  if (fs && !pify) return fs
-  if (pfs && pify) return pfs
+  if (fs && !promisify) return fs
+  if (pfs && promisify) return pfs
 }
 
 async function getBrowserFS (config = {}) {
