@@ -4,9 +4,10 @@ const BrowserFS = require('browserfs')
 const {extraFS, supplimentFS} = require('flexfs')
 const ENV = require('guld-env').getEnv()
 const nodefs = require('fs')
-const rimraf = pify(require('rimraf'))
+const rimraf = require('rimraf')
 var bfsconf = pify(BrowserFS.configure)
 var fs
+var pfs
 
 if (ENV.startsWith('node')) {
   global.FSTYPE = 'node'
@@ -16,26 +17,29 @@ if (ENV.startsWith('node')) {
   global.FSTYPE = 'LocalStorage'
 }
 
-async function getFS () {
+async function getFS (pify=true) {
   // check for cached global instance
-  if (fs) return fs
-  // attempt to get primary choice of either node fs or chrome storage
-  if (global.FSTYPE === 'node') {
-    fs = pify(nodefs)
-  } else if (global.FSTYPE === 'ChromeStorage') {
-    fs = await getChromeStorageFS()
-    fs.copyFile = supplimentFS.copyFile
-  } else {
-    fs = await getBrowserFS({
-      fs: 'LocalStorage'
-    })
-    fs.copyFile = supplimentFS.copyFile
+  if (fs === undefined) {
+    // attempt to get primary choice of either node fs or chrome storage
+    if (global.FSTYPE === 'node') {
+      fs = nodefs
+    } else if (global.FSTYPE === 'ChromeStorage') {
+      fs = await getChromeStorageFS()
+      fs.copyFile = supplimentFS.copyFile
+    } else {
+      fs = await getBrowserFS({
+        fs: 'LocalStorage'
+      })
+      fs.copyFile = supplimentFS.copyFile
+    }
+    fs.rimraf = rimraf // TODO port this for browserfs
+    pfs = pify(fs)
+    fs.mkdirp = pfs.mkdirp = extraFS.mkdirp
+    fs.cpr = pfs.cpr = extraFS.cpr
+    fs.mvr = pfs.mvr = extraFS.mvr
   }
-  fs.mkdirp = extraFS.mkdirp
-  fs.cpr = extraFS.cpr
-  fs.mvr = extraFS.mvr
-  fs.rimraf = rimraf // TODO port this for browserfs
-  return fs
+  if (fs && !pify) return fs
+  if (pfs && pify) return pfs
 }
 
 async function getBrowserFS (config = {}) {
