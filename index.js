@@ -17,7 +17,7 @@ if (ENV.startsWith('node')) {
   global.FSTYPE = 'LocalStorage'
 }
 
-async function getFS (promisify=true) {
+async function getFS (promisify = true) {
   // check for cached global instance
   if (fs === undefined) {
     // attempt to get primary choice of either node fs or chrome storage
