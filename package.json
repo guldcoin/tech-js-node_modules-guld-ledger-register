@@ -16,14 +16,14 @@
   "license": "MIT",
   "dependencies": {
     "browserfs": "^1.4.3",
-    "flexfs": "^2.2.1",
-    "guld-env": "^0.2.0",
+    "flexfs": "^2.3.0",
+    "guld-env": "^1.0.3",
     "pify": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.19.1",
+    "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-es5": "^1.3.1",
     "eslint-plugin-import": "^2.11.0",
