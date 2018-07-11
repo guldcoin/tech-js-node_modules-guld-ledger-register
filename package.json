@@ -1,6 +1,6 @@
 {
   "name": "guld-fs",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Guld file system abstraction module.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "dependencies": {
     "browserfs": "^1.4.3",
     "flexfs": "^2.3.0",
-    "guld-env": "^1.0.9",
+    "guld-env": "^1.0.10",
     "pify": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
