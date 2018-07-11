@@ -17,7 +17,7 @@
   "dependencies": {
     "browserfs": "^1.4.3",
     "flexfs": "^2.3.0",
-    "guld-env": "^1.0.11",
+    "guld-env": "^1.0.12",
     "pify": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
