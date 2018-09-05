@@ -1,7 +1,7 @@
 {
-  "name": "guld-fs",
-  "version": "1.2.14",
-  "description": "Guld file system abstraction module.",
+  "name": "guld-ledger-register",
+  "version": "0.1.1",
+  "description": "Guld ledger register generic.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/_mocha",
@@ -44,6 +44,6 @@
   "engines": {
     "node": ">=7"
   },
-  "homepage": "https://guld.tech/lib/guld-fs.html",
-  "repository": "https://bitbucket.org/guld/tech-js-node_modules-guld-fs"
+  "homepage": "https://guld.tech/lib/guld-ledger-register.html",
+  "repository": "https://bitbucket.org/guld/tech-js-node_modules-guld-ledger-register"
 }
